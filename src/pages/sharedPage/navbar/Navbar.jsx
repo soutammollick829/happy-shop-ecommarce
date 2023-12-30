@@ -5,20 +5,20 @@ import logo from "../../../assets/Logo/Horizontal Logo with White Background.png
 import { FaBars, FaSearch, FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
-//Navbar options
+  //Navbar options
   const navOptions = (
     <>
       <li>
         <Link to="/">Home</Link>
       </li>
       <li>
-      <Link to="/">Shop</Link>
+        <Link to="/">Shop</Link>
       </li>
       <li>
-      <Link to="/">Products</Link>
+        <Link to="/">Products</Link>
       </li>
       <li>
-      <Link to="/">Blog</Link>
+        <Link to="/">Blog</Link>
       </li>
     </>
   );
@@ -45,7 +45,7 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-            {/* use navOptions */}
+              {/* use navOptions */}
               {navOptions}
             </ul>
           </div>
@@ -58,9 +58,17 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        <input type="search" placeholder="Search here..." className="input input-bordered input-sm w-32 lg:w-48 max-w-xs" />
-        <button className="btn btn-square btn-sm"><FaSearch /></button>
-        <FaShoppingCart className="ml-1 lg:ml-3 lg:mr-5 mr-2 text-xl lg:text-2xl"/>
+          <input
+            type="search"
+            placeholder="Search here..."
+            className="input input-bordered input-sm w-32 lg:w-48 max-w-xs"
+          />
+          <button className="btn btn-square btn-sm">
+            <FaSearch />
+          </button>
+          <button>
+            <FaShoppingCart className="ml-1 lg:ml-3 lg:mr-5 mr-2 text-xl lg:text-2xl" />
+          </button>
         </div>
       </div>
       {/* main navbar section close  */}
