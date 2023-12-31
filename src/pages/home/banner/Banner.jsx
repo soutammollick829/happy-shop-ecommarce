@@ -10,7 +10,8 @@ import bannerImg5 from "../../../assets/Banner/White Blue Elegant Promotion Offe
 
 const Banner = () => {
   return (
-    <Carousel autoPlay interval="5000" axis="horizontal" infiniteLoop>
+    // carousel with banner image
+    <Carousel className="mx-5" autoPlay interval="5000" axis="horizontal" infiniteLoop>
       <div>
         <img src={bannerImg1} />
       </div>
