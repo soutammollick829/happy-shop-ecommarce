@@ -1,4 +1,6 @@
 import Banner from "./banner/Banner";
+import BrandLogo from "./brand&logo/BrandLogo";
+import Products from "./products/Products";
 import Categories from "./shopCategories/Categories";
 
 const Home = () => {
@@ -6,6 +8,8 @@ const Home = () => {
         <div>
             <Banner/>
             <Categories/>
+            <Products/>
+            <BrandLogo/>
         </div>
     );
 };
