@@ -23,7 +23,7 @@ const BrandLogo = () => {
       </h4>
       <hr className="mt-5 mx-5" />
       {/* react marquee */}
-      <Marquee className="mt-10 mb-10">
+      <Marquee className="mt-10 mb-16">
         <img className="w-36 mr-14" src={brandLogo1} alt="brand logo" />
         <img className="w-36 mr-14" src={brandLogo2} alt="brand logo" />
         <img className="w-36 mr-14" src={brandLogo3} alt="brand logo" />
