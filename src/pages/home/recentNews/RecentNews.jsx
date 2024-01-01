@@ -40,7 +40,7 @@ const RecentNews = () => {
       {/* recent news section close  */}
 
       {/* discount image  */}
-      <div className="flex gap-5 mx-5 justify-between">
+      <div className="flex gap-5 mx-5 justify-between mb-20">
         <Slide>
           <img className="w-40 lg:w-[460px]" src={newsImg1} alt="news image" />
         </Slide>

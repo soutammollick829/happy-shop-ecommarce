@@ -1,10 +1,9 @@
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-import { FaRegStar, FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaShoppingCart,} from "react-icons/fa";
 
 const ProductsItem = ({ item }) => {
-  console.log(item);
   const { title, thumbnail, rating, price, description, discountPercentage } =
     item;
   return (

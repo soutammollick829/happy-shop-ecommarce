@@ -4,7 +4,6 @@ import "@smastrom/react-rating/style.css";
 import {FaShoppingCart, } from "react-icons/fa";
 
 const Trending = ({ item }) => {
-  console.log(item);
   const { title, thumbnail, rating, price, description, discountPercentage } =
     item;
   return (

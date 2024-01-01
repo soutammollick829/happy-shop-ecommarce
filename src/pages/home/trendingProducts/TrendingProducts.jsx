@@ -1,20 +1,10 @@
-import { data } from "autoprefixer";
-import { useEffect, useState } from "react";
-import ProductsItem from "../../../components/productsItem/ProductsItem";
 import Trending from "../../../components/trendingProducts/Trending";
+import useProducts from "../../../hooks/useProducts";
 
 const TrendingProducts = () => {
-  //fetch product data
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        const products = data.products.filter(item => item.category === 'smartphones');
-        setProduct(products);
-        console.log(product);
-      });
-  }, []);
+  //use custom hook for load API data
+  const [product] = useProducts();
+  const products = product.filter(item => item.category === 'smartphones');
   return (
     //Trending products title
     <div className="pt-10">
@@ -26,7 +16,7 @@ const TrendingProducts = () => {
 
       {/* map product data and pass product item component  */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10 mb-20">
-        {product.map((item) => (
+        {products.map((item) => (
           <Trending key={item.id} item={item}></Trending>
         ))}
       </div>
