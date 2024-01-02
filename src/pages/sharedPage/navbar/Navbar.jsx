@@ -1,5 +1,5 @@
 //import logo img from folder
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/Logo/Horizontal Logo with White Background.png";
 // import react icon
 import { FaBars, FaSearch, FaShoppingCart } from "react-icons/fa";
@@ -7,31 +7,29 @@ import { FaBars, FaSearch, FaShoppingCart } from "react-icons/fa";
 const Navbar = () => {
   //Navbar options
   const navOptions = (
-    <>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/">Shop</Link>
-      </li>
-      <li>
-        <Link to="/">Products</Link>
-      </li>
-      <li>
-        <Link to="/">Blog</Link>
-      </li>
-    </>
+    <div className="space-x-10 font-semibold">
+        <Link className="hover:text-amber-500" to="/">Home</Link>
+        <Link className="hover:text-amber-500" to="/shop">Shop</Link>
+        <Link className="hover:text-amber-500" to="/products">Products</Link>
+        <Link className="hover:text-amber-500" to="/blog">Blog</Link>
+    </div>
   );
+  //hide navbar top option
+  const location = useLocation();
+  const isLogin = location.pathname.includes("login");
+  const isRegister = location.pathname.includes("register");
   return (
     <>
       {/* nav welcome section start */}
-      <div className="flex justify-between mx-5 mt-2 mb-2">
+      { isLogin || isRegister || <div className="flex justify-between mx-5 mt-2 mb-2">
         <p>Welcome to happy shop</p>
         <div className="space-x-2">
-          <button className="btn-sm">Login</button>
-          <button className="btn-sm">Register</button>
+          <Link to="/login"><button className="btn-sm hover:text-amber-500">Login</button></Link>
+          <Link to="/register">
+          <button className="btn-sm hover:text-amber-500">Register</button>
+          </Link>
         </div>
-      </div>
+      </div>}
       {/* nav welcome section close*/}
       <hr />
       {/* main navbar section start */}
@@ -43,7 +41,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-80"
             >
               {/* use navOptions */}
               {navOptions}
