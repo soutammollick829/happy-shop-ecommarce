@@ -1,11 +1,65 @@
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-import {FaShoppingCart, } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
+
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const Trending = ({ item }) => {
-  const { title, thumbnail, rating, price, description, discountPercentage } =
+  const {id, title, thumbnail, rating, price, description, discountPercentage } =
     item;
+
+    const { user } = useContext(AuthContext);
+  
+    const [,refetch] = useCart();
+  
+    //even hendaler post data in server
+    const handelAddToCart = (item) => {
+      if (user && user.email) {
+        const addToCart = {
+          productId: id,
+          title,
+          thumbnail,
+          price,
+          description,
+          email: user.email,
+        };
+        fetch("http://localhost:5000/carts", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(addToCart),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //sweet alert
+            if (data.insertedId) {
+              refetch() //data refetch tanstack query hook
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                },
+              });
+              Toast.fire({
+                icon: "success",
+                title: "Add to cart successfully",
+              });
+            }
+          });
+      }
+    };
+    //even hendaler post data in server section close
+
   return (
     <div className="mx-5 mt-5">
       {/* product showing card  */}
@@ -23,11 +77,11 @@ const Trending = ({ item }) => {
             </p>
           </span>
           {/* React rating  */}
-          <Rating style={{ maxWidth: 120}} value={rating} readOnly />
+          <Rating style={{ maxWidth: 120 }} value={rating} readOnly />
           <div className="card-actions">
-            <div className="btn btn-square w-28 rounded-none bg-slate-800 text-white uppercase hover:bg-[#ffd90c] hover:text-black">
+            <button onClick={()=> handelAddToCart(item)} className="btn btn-square w-28 rounded-none bg-slate-800 text-white uppercase hover:bg-[#ffd90c] hover:text-black">
               Add to Cart
-            </div>
+            </button>
             <FaShoppingCart className="text-4xl mt-2" />
           </div>
         </div>
