@@ -1,4 +1,5 @@
 import FeatureProductCard from "../../../components/featureProductsCard/FeatureProductCard";
+import FilterProduct from "../../../components/filter product/FilterProduct";
 import useProducts from "../../../hooks/useProducts";
 
 const FeatureProducts = () => {
@@ -11,6 +12,7 @@ const FeatureProducts = () => {
       <h4 className="uppercase border-l-4 border-[#ffd90c] ml-5 text-2xl pl-2 font-semibold">
       Feature Products
       </h4>
+      <FilterProduct/>
       <hr className="mt-5 mx-5" />
       {/* feature products title close  */}
 

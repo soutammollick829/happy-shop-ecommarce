@@ -11,6 +11,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -26,6 +27,7 @@ const Login = () => {
     .then(result => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      reset()
       //use sweet alert2
       Swal.fire({
         position: "top-end",

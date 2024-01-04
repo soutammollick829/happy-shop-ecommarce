@@ -15,20 +15,33 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.mail, data.password).then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
-      Swal.fire({
-        title: "Good job!",
-        text: "You successfully create an account",
-        icon: "success",
+      //update user profile and post server user data
+      updateUserProfile(data.firstName, data.photoURL, data.accessToken).then(() => {
+        const saveUser = {name: data.firstName, email: data.mail, photo: data.photoURL, token: data.accessToken}
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              reset();
+              Swal.fire({
+                title: "Good job!",
+                text: "You successfully create an account",
+                icon: "success",
+              });
+              navigate("/");
+            }
+          });
       });
-      navigate("/");
     });
   };
 

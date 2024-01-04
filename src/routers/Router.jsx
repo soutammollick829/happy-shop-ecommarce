@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         {
           path:"/viewcart",
           element:<ViewCart/>
-        }
+        },
       ]
     },
   ]);
