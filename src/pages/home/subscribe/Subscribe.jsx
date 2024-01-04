@@ -2,7 +2,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 
 const Subscribe = () => {
     return (
-        <div className="text-center bg-slate-100 p-10 space-y-3 mx-5">
+        <div className="text-center bg-slate-100 p-10 space-y-3 mx-5 mb-20">
             <FaRegEnvelope className="mx-auto text-6xl text-[#ffd90c]"/>
             <p className="text-xl font-semibold">Newsletter</p>
             <p>Subscribe with us to get special offers and other discount information</p>
